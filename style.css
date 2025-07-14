@@ -17,7 +17,7 @@ body.dark {
 
 
 #ai-help-button {
-    z-index: 9999;
+    z-index: 7;
     padding: 12px 18px;
     font-size: 16px;
     font-weight: 600;

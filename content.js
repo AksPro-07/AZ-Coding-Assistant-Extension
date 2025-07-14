@@ -1,18 +1,52 @@
-const codingDescContainerClass = "py-4 px-3 coding_desc_container__gdB9M";
+const codingDescContainerClass = "ant-row  d-flex gap-4 mt-1 css-19gw05y";
 
 function addAIHelpButton() {
-    const aiHelpButton = document.createElement("button");
-    aiHelpButton.innerText = "AI Help";
-    aiHelpButton.id = "ai-help-button";
+    // Avoid duplicate buttons
+    if (document.getElementById("ai-help-button")) return;
 
-    // Add a click event listener
+    const container = document.getElementsByClassName(codingDescContainerClass)[0];
+    if (!container) return;
+
+    const aiHelpButton = document.createElement("button");
+    aiHelpButton.id = "ai-help-button";
+    aiHelpButton.innerText = "AI Help";
+
     aiHelpButton.addEventListener("click", function () {
         alert("AI Help chatbot will open here!");
     });
 
-    // Append the button to the body
-    const codingDescContainer = document.getElementsByClassName(codingDescContainerClass)[0];
-    codingDescContainer.insertAdjacentElement("beforeend", aiHelpButton);
+    container.appendChild(aiHelpButton);
 }
 
+function observeContainerChanges() {
+    const bodyObserver = new MutationObserver(() => {
+        const container = document.getElementsByClassName(codingDescContainerClass)[0];
+
+        if (container && !container.querySelector("#ai-help-button")) {
+            addAIHelpButton();
+        }
+
+        // Observe the specific container for re-renders
+        if (container) {
+            const containerObserver = new MutationObserver(() => {
+                if (!container.querySelector("#ai-help-button")) {
+                    addAIHelpButton();
+                }
+            });
+
+            containerObserver.observe(container, {
+                childList: true,
+                subtree: true,
+            });
+        }
+    });
+
+    bodyObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+}
+
+// Run once at startup
 addAIHelpButton();
+observeContainerChanges();
