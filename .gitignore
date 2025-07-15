@@ -11,3 +11,6 @@ build/
 # Environment files
 .env
 .env.local
+
+# Don't commit secrets
+config.json
