@@ -1,12 +1,17 @@
 {
   "manifest_version": 3,
   "name": "AZ Coding Assistant",
-  "version": "0.1",
+  "version": "2.3",
   "author": "Akshit Meena",
-  "description": "A description about your Chrome Extension...",
+  "description": "An intelligent AI assistant to help you solve problems on maang.in.",
   "permissions": [
     "storage",
-    "tabs"
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*"
   ],
   "content_scripts": [
     {
@@ -14,11 +19,17 @@
         "https://maang.in/*"
       ],
       "js": [
-        "content.js"
+        "scripts/constants.js",
+        "scripts/state.js",
+        "scripts/utils.js",
+        "scripts/ui.js",
+        "scripts/api.js",
+        "scripts/main.js"
       ],
       "css": [
         "style.css"
-      ]
+      ],
+      "run_at": "document_start"
     }
   ],
   "background": {
@@ -30,7 +41,8 @@
         "assets/bookmark.png",
         "assets/user-icon.png",
         "assets/bot-icon.png",
-        "config.json"
+        "assets/delete.png",
+        "inject.js"
       ],
       "matches": [
         "https://maang.in/*"
@@ -43,7 +55,6 @@
       "24": "assets/ext-icon.png",
       "32": "assets/ext-icon.png"
     },
-    "default_popup": "popup.html",
-    "default_title": "A tooltip popup description when you hover over the Chrome Extension icon."
+    "default_title": "AZ Coding Assistant"
   }
 }

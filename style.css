@@ -243,3 +243,40 @@ body.dark {
   color: white;
 }
 
+
+/* Header Button Styling */
+.ai-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* This creates the space between the two buttons */
+}
+
+#ai-clear-btn,
+#ai-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+#ai-clear-btn:hover,
+#ai-close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure buttons are visible in dark mode */
+[data-theme="dark"] #ai-clear-btn:hover,
+[data-theme="dark"] #ai-close-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Style for the new delete icon image */
+.ai-header-icon {
+  width: 16px;
+  height: 16px;
+}
+
+
+
